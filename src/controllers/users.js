@@ -48,6 +48,7 @@ module.exports.updateUser = (req, res, next) => {
     })
     .catch((err) => {
       if (err.name === 'ValidationError') return next(new BadRequestErr(AppErrors.ERROR_EDIT_USER_PARAMS));
+      if (err.codeName === 'DuplicateKey') return next(new NotUniqueEmailErr(AppErrors.ERROR_EMAIL_ALREDY_EXISTS));
       return next(err);
     });
 };

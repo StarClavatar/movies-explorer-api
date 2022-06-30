@@ -17,7 +17,8 @@ const movieSchema = new mongoose.Schema({
     required: true,
   },
   year: {
-    type: Number,
+    type: String,
+    minlength: 4,
     required: true,
   },
   description: {
@@ -55,7 +56,7 @@ const movieSchema = new mongoose.Schema({
     required: true,
   },
   movieId: {
-    type: String,
+    type: Number,
     required: true,
   },
   nameRU: {

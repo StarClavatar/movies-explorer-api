@@ -54,7 +54,7 @@ module.exports.createMovie = (req, res, next) => {
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        return next(new BadRequestErr(AppErrors.ERROR_NEW_Movie_PARAMS));
+        return next(new BadRequestErr(AppErrors.ERROR_NEW_MOVIE_PARAMS));
       }
       return next(err);
     });
@@ -69,10 +69,10 @@ module.exports.deleteMovie = (req, res, next) => {
   // ищем карточку
   Movie.findOne({ _id: id }, 'owner')
     .then((result) => {
-      if (!result) throw new NotFoundErr(AppErrors.ERROR_Movie_NOT_FOUND);
+      if (!result) throw new NotFoundErr(AppErrors.ERROR_MOVIE_NOT_FOUND);
       // выходим с оишбкой, если карточка не принадлежит текущему пользователю
       if (result.get('owner', String) !== req.user._id) {
-        throw new UserRights(AppErrors.ERROR_DELETE_Movie_NOT_OWNERED);
+        throw new UserRights(AppErrors.ERROR_DELETE_MOVIE_NOT_OWNERED);
       }
       // удаляем карточку
       Movie.findOneAndDelete({ _id: id })

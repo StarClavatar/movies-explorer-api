@@ -5,7 +5,7 @@ const linkRegExp = /^https?:\/\/(www\.)?[\w\-\._~:\/\?#\[\]@!\$&'\(\)\*\+,;=]+\.
 
 const validationMongoId = celebrate({
   params: Joi.object().keys({
-    _id: Joi.string().alphanum().length(24),
+    _id: Joi.string().hex().length(24),
   }),
 });
 
@@ -36,12 +36,12 @@ const validationCreateMovie = celebrate({
     country: Joi.string().required().min(2),
     director: Joi.string().required().min(2),
     duration: Joi.number().required(),
-    year: Joi.number().required(),
+    year: Joi.string().required().min(4),
     description: Joi.string().required().min(2),
     image: Joi.string().required().pattern(linkRegExp),
     trailerLink: Joi.string().required().pattern(linkRegExp),
     thumbnail: Joi.string().required().pattern(linkRegExp),
-    movieId: Joi.string().required().min(2), // Joi.string().alphanum().length(24),
+    movieId: Joi.number().required(), // Joi.string().alphanum().length(24),
     nameRU: Joi.string().required().min(2),
     nameEN: Joi.string().required().min(2),
   }),

@@ -7,12 +7,19 @@ const helmet = require('helmet');
 const routes = require('./routes');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const cors = require('./middlewares/cors');
+const errorsProc = require('./appErrors/errors_processing');
+const rateLimiter = require('./middlewares/rateLimiter');
 
 // читаем переменные окружения из .env файла
 require('dotenv').config();
 
 const { PORT = 3000 } = process.env;
+const { MONGOADDRESS = 'mongodb://127.0.0.1:27017/moviesdb' } = process.env;
+
 const app = express();
+
+// подключаем ограничитель количества запросов
+app.use(rateLimiter);
 
 // подключаем логгер запросов
 app.use(requestLogger);
@@ -28,7 +35,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // подключаемся к БД MongoDB
-mongoose.connect('mongodb://127.0.0.1:27017/moviesdb');
+mongoose.connect(MONGOADDRESS);
 
 // подключаем роутинг
 app.use(routes);
@@ -40,16 +47,7 @@ app.use(errorLogger);
 app.use(errors()); // обработчик ошибок celebrate.
 
 // централизованный обработчик ошибок
-app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
-  // если у ошибки нет статуса, выставляем 500
-  const { statusCode = 500, message } = err;
-  res
-    .status(statusCode)
-    .send({
-      // проверяем статус и выставляем сообщение в зависимости от него
-      message: statusCode === 500 ? 'На сервере произошла ошибка' : message,
-    });
-});
+app.use(errorsProc);
 
 // обрабатываем незавершенные запросы
 app.use((req, res) => {
