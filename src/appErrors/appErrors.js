@@ -1,0 +1,17 @@
+module.exports = {
+  ERROR_ICORRECT_USER_ID: 'Передан некорректный идентификатор пользователя',
+  ERROR_USER_NOT_FOUND: 'Пользователь с указанным _id не найден',
+  ERROR_NEW_USER_PARAMS: 'Переданы некорректные данные при создании пользователя',
+  ERROR_EDIT_USER_PARAMS: 'Переданы некорректные данные при редактировании профиля',
+  ERROR_MOVIE_NOT_FOUND: 'Фильм с указанным _id не найден',
+  ERROR_NEW_MOVIE_PARAMS: 'Переданы некорректные данные при создании фильма',
+  ERROR_PARAMS: 'Переданы некорректные параметры',
+  ERROR_EMAIL_ALREDY_EXISTS: 'Указанный email уже занят',
+  ERROR_AUTHORIZATION_REQUIRED: 'Необходима авторизация',
+  ERROR_AUTHORIZATION: 'Ошибка авторизации',
+  ERROR_LOGIN: 'Ошибка входа',
+  ERROR_LOGIN_PASSWORD: 'Неправильная почта или пароль',
+  ERROR_BAD_REQUEST: 'Неправильный запрос',
+  ERROR_DELETE_MOVIE_NOT_OWNERED: 'Запрещено удалять фильм, добавленный не вами',
+  ERROR_SERVER: 'Ошибка сервера',
+};
