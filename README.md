@@ -18,4 +18,4 @@
 `npm run dev` — запускает сервер с hot-reload
 
 ## API доступно по адресу 
-https://movies-api/clavatar.nomoreparties.sbs
+https://movies-api.clavatar.nomoreparties.sbs

@@ -18,11 +18,11 @@ const { MONGOADDRESS = 'mongodb://127.0.0.1:27017/moviesdb' } = process.env;
 
 const app = express();
 
-// подключаем ограничитель количества запросов
-app.use(rateLimiter);
-
 // подключаем логгер запросов
 app.use(requestLogger);
+
+// подключаем ограничитель количества запросов
+app.use(rateLimiter);
 
 // подключаем обработку CORS
 app.use(cors);
