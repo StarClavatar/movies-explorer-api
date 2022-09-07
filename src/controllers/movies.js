@@ -9,7 +9,7 @@ const UserRights = require('../appErrors/user-rights');
 const fields = 'country director duration year description image trailerLink thumbnail owner movieId nameRU nameEN';
 
 module.exports.getMovies = (req, res, next) => {
-  Movie.find({}, fields).populate('owner', 'name email')
+  Movie.find({ owner: req.user._id }, fields).populate('owner', 'name email')
     .then((result) => res.send(result))
     .catch(next);
 };
