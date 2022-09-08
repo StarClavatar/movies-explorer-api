@@ -5,7 +5,7 @@ const movieSchema = new mongoose.Schema({
   country: {
     type: String,
     minlength: 2,
-    required: true,
+    // required: true,
   },
   director: {
     type: String,
@@ -67,7 +67,7 @@ const movieSchema = new mongoose.Schema({
   nameEN: {
     type: String,
     minlength: 2,
-    required: true,
+    // required: true,
   },
 }, { versionKey: false });
 

@@ -33,7 +33,7 @@ const validationEditUser = celebrate({
 
 const validationCreateMovie = celebrate({
   body: Joi.object().keys({
-    country: Joi.string().required().min(2),
+    country: Joi.string().min(2), // Joi.string().required().min(2),
     director: Joi.string().required().min(2),
     duration: Joi.number().required(),
     year: Joi.string().required().min(4),
@@ -43,7 +43,7 @@ const validationCreateMovie = celebrate({
     thumbnail: Joi.string().required().pattern(linkRegExp),
     movieId: Joi.number().required(), // Joi.string().alphanum().length(24),
     nameRU: Joi.string().required().min(2),
-    nameEN: Joi.string().required().min(2),
+    nameEN: Joi.string().min(2), // nameEN: Joi.string().required().min(2),
   }),
 });
 
