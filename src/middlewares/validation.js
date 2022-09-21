@@ -1,5 +1,4 @@
 const { celebrate, Joi } = require('celebrate');
-
 // eslint-disable-next-line no-useless-escape
 const linkRegExp = /^https?:\/\/(www\.)?[\w\-\._~:\/\?#\[\]@!\$&'\(\)\*\+,;=]+\.[\w\-\._~:\/\?#\[\]@!\$&'\(\)\*\+,;=а-я]+#?/i;
 // eslint-disable-next-line no-control-regex
